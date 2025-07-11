@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import jobRoutes from './routes/jobRoutes';
+import errorHandler from './middleware/errorHandler';
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/jobs', jobRoutes);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
